@@ -19,7 +19,6 @@
 
 <div class="container my-4">
 
-    <!-- Situation Global / Bilan -->
     <div class="row mb-4">
         <div class="col-md-6">
             <div class="card text-white bg-success shadow-sm">
@@ -40,7 +39,6 @@
     </div>
 
     <div class="row">
-        <!-- Section Préfixes -->
         <div class="col-md-4 mb-4">
             <div class="card shadow-sm">
                 <div class="card-header bg-dark text-white fw-bold">Configuration des Préfixes</div>
@@ -64,13 +62,11 @@
             </div>
         </div>
 
-        <!-- Section Barèmes des frais -->
         <div class="col-md-8 mb-4">
             <div class="card shadow-sm">
                 <div class="card-header bg-dark text-white fw-bold">Barème des Frais (Modifiable)</div>
                 <div class="card-body">
                     
-                    <!-- Formulaire d'ajout de tranche -->
                     <form action="<?= base_url('/operateur/bareme/ajouter') ?>" method="post" class="row g-2 mb-3">
                         <div class="col-md-3">
                             <select name="type_operation" class="form-select" required>
@@ -92,7 +88,6 @@
                         </div>
                     </form>
 
-                    <!-- Tableau des barèmes -->
                     <table class="table table-bordered table-striped text-center">
                         <thead class="table-dark">
                             <tr>
@@ -121,7 +116,6 @@
         </div>
     </div>
 
-    <!-- Situation des Comptes Clients -->
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-dark text-white fw-bold">Situation des Comptes Clients</div>
         <div class="card-body">
