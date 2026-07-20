@@ -2,60 +2,56 @@
 
 namespace App\Controllers;
 
-use App\Models\PrefixeModel;
-use App\Models\BaremeModel;
-use App\Models\ClientModel;
+use App\Services\PrefixeService;
+use App\Services\BaremeService;
+use App\Services\TransactionService;
+use App\Services\ClientService;
 use App\Models\TransactionModel;
 
 class OperateurController extends BaseController
 {
-    protected $prefixeModel;
-    protected $baremeModel;
-    protected $clientModel;
+    protected $prefixeService;
+    protected $baremeService;
     protected $transactionModel;
+    protected $transactionService;
+    protected $clientService;
 
     public function __construct()
     {
-        $this->prefixeModel     = new PrefixeModel();
-        $this->baremeModel      = new BaremeModel();
-        $this->clientModel       = new ClientModel();
-        $this->transactionModel = new TransactionModel();
+        $this->prefixeService = new PrefixeService();
+        $this->baremeService = new BaremeService();
+        $this->transactionService = new TransactionService();
+        $this->clientService = new ClientService();
     }
 
-    // Tableau de bord de l'Opérateur
     public function index()
     {
         $data = [
-            'prefixes' => $this->prefixeModel->findAll(),
-            'baremes'  => $this->baremeModel->orderBy('type_operation, montant_min', 'ASC')->findAll(),
-            'clients'  => $this->clientModel->findAll(),
-            // Calcul du gain total via les frais collectés (retrait & transfert)
-            'total_gains' => $this->transactionModel->selectSum('frais')->first()['frais'] ?? 0
+            'prefixes'    => $this->prefixeService->getAll(),
+            'baremes'     => $this->baremeService->getAll(),
+            'clients'     => $this->clientService->getAll(),
+            'total_gains' => $this->transactionService->getTotalGains()
         ];
 
         return view('operateur/index', $data);
     }
 
-    // Ajouter un nouveau préfixe
     public function ajouterPrefixe()
     {
-        $prefixe = trim($this->request->getPost('prefixe'));
-
-        if (!empty($prefixe)) {
-            $this->prefixeModel->save(['prefixe' => $prefixe]);
-        }
+        $this->prefixeService->ajouterPrefixe(
+            $this->request->getPost('prefixe')
+        );
 
         return redirect()->to('/operateur');
     }
 
-    // Supprimer un préfixe
     public function supprimerPrefixe($id)
     {
-        $this->prefixeModel->delete($id);
+        $this->prefixeService->supprimerPrefixe($id);
+
         return redirect()->to('/operateur');
     }
 
-    // Ajouter / Modifier une tranche de barème
     public function ajouterBareme()
     {
         $data = [
@@ -65,14 +61,15 @@ class OperateurController extends BaseController
             'frais'          => $this->request->getPost('frais')
         ];
 
-        $this->baremeModel->save($data);
+        $this->baremeService->ajouterBareme($data);
+
         return redirect()->to('/operateur');
     }
 
-    // Supprimer une tranche de barème
     public function supprimerBareme($id)
     {
-        $this->baremeModel->delete($id);
+        $this->baremeService->supprimerBareme($id);
+
         return redirect()->to('/operateur');
     }
 }
