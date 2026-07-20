@@ -5,10 +5,22 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-// $routes->get('/', 'Home::index');
 
-// Routes Opérateur
+$routes->get('/', 'ClientController::loginView');
+
+$routes->get('/client/login', 'ClientController::loginView');
+$routes->post('/client/login', 'ClientController::login');
+$routes->get('/client/logout', 'ClientController::logout');
+
+$routes->get('/client/dashboard', 'ClientController::dashboard');
+
+$routes->post('/client/depot', 'ClientController::depot');
+$routes->post('/client/retrait', 'ClientController::retrait');
+$routes->post('/client/transfert', 'ClientController::transfert');
+
+
 $routes->get('/operateur', 'OperateurController::index');
+
 $routes->post('/operateur/prefixe/ajouter', 'OperateurController::ajouterPrefixe');
 $routes->get('/operateur/prefixe/supprimer/(:num)', 'OperateurController::supprimerPrefixe/$1');
 
