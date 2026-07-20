@@ -97,4 +97,27 @@ class ClientController extends BaseController
 
         return redirect()->back()->with('success', $result['message']);
     }
+    public function transfertMultiple()
+    {
+        return view('client/transfert-multiple');
+    }
+
+    public function envoyerTransfertMultiple()
+    {
+        $expediteur = session()->get('client_phone');
+        $destinatairesArray = $this->request->getPost('destinataires');
+        
+        $destinataires = is_array($destinatairesArray) ? implode(',', $destinatairesArray) : '';
+        
+        $montantTotal = $this->request->getPost('montant_total');
+        $inclureFrais = (bool) $this->request->getPost('inclure_frais_retrait');
+
+        $res = $this->transactionService->transfertMultiple($expediteur, $destinataires, $montantTotal, $inclureFrais);
+
+        if ($res['success']) {
+            return redirect()->to('/client/dashboard')->with('success', $res['message']);
+        } else {
+            return redirect()->back()->with('error', $res['message']);
+        }
+    }
 }
