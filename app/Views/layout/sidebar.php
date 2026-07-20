@@ -8,22 +8,25 @@
     <nav>
 
         <a href="<?= base_url('/operateur') ?>">
-            🏠 Dashboard
+             Dashboard
         </a>
 
+        <a href="<?= base_url('/operateur/autres-operateurs') ?>">
+            Autre operateur
+        </a>
 
         <a href="<?= base_url('/operateur/prefixes') ?>">
-            ⚙ Préfixes
+             Préfixes
         </a>
 
 
         <a href="<?= base_url('/operateur/baremes') ?>">
-            💰 Barème des frais
+             Barème des frais
         </a>
 
 
         <a href="<?= base_url('/operateur/clients') ?>">
-            👥 Clients
+             Clients
         </a>
 
 
@@ -31,7 +34,7 @@
 
 
     <a href="<?= base_url('/client/login') ?>" class="logout">
-        🚪 Déconnexion
+         Déconnexion
     </a>
 
 
