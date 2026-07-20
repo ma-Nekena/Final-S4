@@ -6,23 +6,20 @@
 
 <div class="client-dashboard">
 
-
-    <!-- Barre utilisateur -->
     <div class="client-topbar">
 
         <div>
             📱 Client :
             <strong><?= esc($client['numero_telephone']) ?></strong>
         </div>
-
+        <a href="<?= base_url('/client/transfert-multiple') ?>" class="btn btn-outline-warning">
+            Effectuer un Transfert Multiple
+        </a>
         <a href="<?= base_url('/client/logout') ?>" class="logout-btn">
             Déconnexion
         </a>
 
     </div>
-
-
-
     <?php if (session()->getFlashdata('error')): ?>
 
         <div class="alert alert-danger">
