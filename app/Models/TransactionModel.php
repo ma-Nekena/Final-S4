@@ -8,5 +8,13 @@ class TransactionModel extends Model
 {
     protected $table            = 'transactions';
     protected $primaryKey       = 'id';
-    protected $allowedFields    = ['type_transaction', 'telephone_expediteur', 'telephone_destinataire', 'montant', 'frais'];
+    protected $allowedFields = [
+    'type_transaction', 
+    'telephone_expediteur', 
+    'telephone_destinataire', 
+    'montant', 
+    'frais', 
+    'commission_autre_operateur', 
+    'autre_operateur_id'
+];
 }
