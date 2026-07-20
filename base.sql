@@ -1,16 +1,14 @@
--- Nettoyage de la base
+
 DROP TABLE IF EXISTS transactions;
 DROP TABLE IF EXISTS comptes_clients;
 DROP TABLE IF EXISTS baremes_frais;
 DROP TABLE IF EXISTS prefixes_operateurs;
 
--- 1. PRÉFIXES AUTORISÉS (ex: 033, 037)
 CREATE TABLE prefixes_operateurs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     prefixe VARCHAR(10) NOT NULL UNIQUE
 );
 
--- 2. BARÈMES DE FRAIS PAR TRANCHE DE MONTANT
 CREATE TABLE baremes_frais (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     type_operation VARCHAR(20) NOT NULL, -- 'retrait' ou 'transfert'
@@ -19,7 +17,6 @@ CREATE TABLE baremes_frais (
     frais REAL NOT NULL
 );
 
--- 3. COMPTES CLIENTS
 CREATE TABLE comptes_clients (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     numero_telephone VARCHAR(15) NOT NULL UNIQUE,
@@ -27,7 +24,6 @@ CREATE TABLE comptes_clients (
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- 4. HISTORIQUE DES TRANSACTIONS
 CREATE TABLE transactions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     type_transaction VARCHAR(20) NOT NULL, -- 'depot', 'retrait', 'transfert'
@@ -38,14 +34,9 @@ CREATE TABLE transactions (
     date_transaction DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- =========================================================
--- DONNÉES INITIALES (Exemple de l'énoncé)
--- =========================================================
 
--- Préfixes autorisés
 INSERT INTO prefixes_operateurs (prefixe) VALUES ('033'), ('037');
 
--- Barème pour Retrait
 INSERT INTO baremes_frais (type_operation, montant_min, montant_max, frais) VALUES
 ('retrait', 100, 1000, 50),
 ('retrait', 1001, 5000, 50),
@@ -58,7 +49,6 @@ INSERT INTO baremes_frais (type_operation, montant_min, montant_max, frais) VALU
 ('retrait', 500001, 1000000, 2500),
 ('retrait', 1000001, 2000000, 3000);
 
--- Barème pour Transfert (identique par défaut)
 INSERT INTO baremes_frais (type_operation, montant_min, montant_max, frais) VALUES
 ('transfert', 100, 1000, 50),
 ('transfert', 1001, 5000, 50),
