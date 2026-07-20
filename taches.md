@@ -1,17 +1,30 @@
 # VERSION 1
 ## database
-    [] creation de database
-        [] table prefies_operateurs
-        [] table baremes_frais
-        [] table comptes_clients
-        [] table transactions
-    [] insertion des donnees
+    [OK] creation de database
+        [OK] table prefies_operateurs
+        [OK] table baremes_frais
+        [OK] table comptes_clients
+        [OK] table transactions
+    [OK] insertion des donnees
 
 ## models
-    [] BaremeModel
-    [] ClientModel
-    [] PrefixeModel
-    [] TransactionModel
+    [OK] BaremeModel
+    [OK] ClientModel
+    [OK] PrefixeModel
+    [OK] TransactionModel
 
 ## controllers
-    []
+    [OK] operateurCOntroller 
+    [OK] clientController
+
+# VERSION2
+    [OK] ajout de table operateur
+    [OK] Configuration des préfixes valable pour les autres opérateurs (ex: 032 et 031, …)
+    [OK] Configuration % en plus de commissions pour les transferts vers les autres opérateurs 
+    [OK] Sur la page “Situation gain via les différents frais” , séparer opérateur et autres opérateurs
+    [OK] Situation des montants à envoyer à chaque opérateur
+
+    [OK] Option inclure frais de retrait lors de l’envoi
+    [OK] Envoi multiple vers plusieurs numéros ( divisé le montant pour chaque numéro)
+    même opérateur uniquement
+
