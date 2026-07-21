@@ -6,6 +6,7 @@ use App\Services\BaremeService;
 use App\Services\TransactionService;
 use App\Services\ClientService;
 use App\Services\AutreOperateurService;
+use App\Services\PromotionService;
 
 class OperateurController extends BaseController
 {
@@ -14,6 +15,7 @@ class OperateurController extends BaseController
     protected $transactionService;
     protected $clientService;
     protected $autreOperateurService;
+    protected $promotionService;
 
     public function __construct()
     {
@@ -22,6 +24,7 @@ class OperateurController extends BaseController
         $this->transactionService = new TransactionService();
         $this->clientService = new ClientService();
         $this->autreOperateurService = new AutreOperateurService();
+        $this->promotionService = new PromotionService();
     }
 
     public function index()
@@ -117,5 +120,21 @@ class OperateurController extends BaseController
     {
         $this->autreOperateurService->supprimer($id);
         return redirect()->to('/operateur/autres-operateurs');
+    }
+
+        public function promotions()
+    {
+        $data = [
+            'promotions' => $this->promotionService->getAll()
+        ];
+        return view('operateur/promotions', $data);
+    }
+
+    public function ajouterPromotion()
+    {
+        $this->promotionService->ajouterPromotion(
+            $this->request->getPost('promotion')
+        );
+        return redirect()->to('/operateur/promotions');
     }
 }
