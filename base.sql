@@ -10,6 +10,12 @@ CREATE TABLE prefixes_operateurs (
     prefixe VARCHAR(10) NOT NULL UNIQUE
 );
 
+CREATE TABLE promotion_pourcentage (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    promotion_pourcentage REAL DEFAULT 0.0
+);
+
+
 -- 2. AUTRES OPÉRATEURS PARTENAIRES
 CREATE TABLE autres_operateurs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
