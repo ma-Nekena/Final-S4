@@ -28,3 +28,8 @@
     [OK] Envoi multiple vers plusieurs numéros ( divisé le montant pour chaque numéro)
     même opérateur uniquement
 
+# ALEA
+    Promotion en pourcentage sur les frais de transfert de meme operateurs
+    Contrainte: pourcentage dans le base
+    Page modification pourcentage
+
