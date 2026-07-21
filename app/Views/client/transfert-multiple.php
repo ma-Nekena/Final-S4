@@ -80,37 +80,21 @@
                             Ajouter un numéro
 
                         </button>
-                            <div id="liste-numeros">
-
-                                <div class="input-group mb-3 row-numero">
-
-                                    <span class="input-group-text">
-
-                                        📱
-
-                                    </span>
-
-                                    <input
-                                        type="text"
-                                        name="destinataires[]"
-                                        class="form-control"
-                                        placeholder="Ex : 0331122233"
-                                        required
-                                    >
-
-                                    <button
-                                        type="button"
-                                        class="btn btn-outline-danger"
-                                        onclick="supprimerChampNumero(this)">
-
-                                        ✕
-
-                                    </button>
-
-                                </div>
-
+                        <div id="liste-numeros">
+                            <div class="numero-row">
+                                <span class="phone-icon">📱</span>
+                                <input
+                                    type="text"
+                                    name="destinataires[]"
+                                    class="numero-input"
+                                    placeholder="Ex : 0331122233"
+                                    required
+                                >
+                                <button type="button" class="delete-number" onclick="supprimerChampNumero(this)">
+                                    ✕
+                                </button>
                             </div>
-
+                        </div>
                             <div class="form-text">
 
                                 Le montant total sera réparti automatiquement entre tous les destinataires.
