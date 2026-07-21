@@ -1,875 +1,1019 @@
-/* ===== HEADER ELEGANT ===== */
+/* ==========================================================================
+   MOBILE MONEY — Operator Panel
+   Design tokens
+   -------------------------------------------------------------------------
+   Palette
+     --navy      #101B2D  sidebar / header ink
+     --navy-2    #16233A  sidebar hover / secondary panels
+     --cream     #F6F3EC  page background
+     --paper     #FFFFFF  card surface
+     --gold      #C99A48  primary accent (brand — kept from existing btn-gold)
+     --gold-2    #E7C077  gold gradient highlight
+     --emerald   #1D8F6B  positive / gains
+     --rose      #C4574B  destructive / danger
+     --ink       #1B2333  body text
+     --muted     #7C8494  secondary text
+   Type
+     Display / headings : 'Sora'   (geometric, confident — good for currency & numerals)
+     Body / UI          : 'Inter'  (neutral workhorse for tables & forms)
+   Signature
+     A thin woven-stripe motif (inspired by the lamba, Malagasy woven cloth)
+     along the base of the sidebar — the one ornamental flourish on an
+     otherwise disciplined, ledger-like interface.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --navy: #101b2d;
+  --navy-2: #16233a;
+  --navy-3: #1d2c47;
+  --cream: #f6f3ec;
+  --paper: #ffffff;
+  --gold: #c99a48;
+  --gold-2: #e7c077;
+  --emerald: #1d8f6b;
+  --emerald-bg: #e7f4ee;
+  --rose: #c4574b;
+  --rose-bg: #fbeae8;
+  --ink: #1b2333;
+  --muted: #7c8494;
+  --line: #e7e2d6;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --shadow-soft: 0 8px 24px rgba(16, 27, 45, 0.06);
+  --shadow-card: 0 1px 2px rgba(16, 27, 45, 0.04), 0 12px 28px rgba(16, 27, 45, 0.07);
+  --shadow-sidebar: 0 20px 40px rgba(16, 27, 45, 0.28);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5,
+.page-title, .card-title {
+  font-family: 'Sora', 'Inter', sans-serif;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+
+h2 { font-weight: 700; font-size: 1.5rem; margin-bottom: 1.25rem; }
+h4 { font-weight: 600; font-size: 1.05rem; }
+
+a { text-decoration: none; color: inherit; }
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
 
 .header {
-    background: #111827;
-    padding: 18px 0;
-    border-bottom: 3px solid #d4af37;
+  background: var(--navy);
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* Logo */
 .brand {
-    color: #d4af37;
-    font-size: 24px;
-    font-weight: 600;
-    text-decoration: none;
-    letter-spacing: 1px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
+.menu { display: flex; gap: 10px; }
 
-/* Boutons */
-.menu {
-    display: flex;
-    gap: 15px;
+.btn-client, .btn-operateur {
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all 0.18s ease;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e9ebf0;
 }
 
-.menu a {
-    text-decoration: none;
-    padding: 10px 22px;
-    border-radius: 25px;
-    font-size: 15px;
-    font-weight: 500;
-    transition: 0.3s;
+.btn-client:hover, .btn-operateur:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
-
-/* Bouton Client */
-.btn-client {
-    background: transparent;
-    color: white;
-    border: 1px solid #d4af37;
-}
-
-.btn-client:hover {
-    background: #d4af37;
-    color: #111827;
-}
-
-
-/* Bouton Opérateur */
 .btn-operateur {
-    background: #d4af37;
-    color: #111827;
-    border: 1px solid #d4af37;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  color: var(--navy);
+  border: none;
 }
 
 .btn-operateur:hover {
-    background: transparent;
-    color: white;
+  filter: brightness(1.06);
+  color: var(--navy);
 }
 
-/* ===== FOOTER ELEGANT ===== */
+/* ==========================================================================
+   Shell layout — sidebar floats with margin, rounded, own shadow
+   ========================================================================== */
 
-.footer {
-    background: #111827;
-    border-top: 3px solid #d4af37;
-    padding: 25px 0;
-    margin-top: 50px;
-    text-align: center;
+.operator-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  max-width: 1360px;
+  margin: 28px auto;
+  padding: 0 24px;
 }
 
-
-/* Copyright au centre */
-.copyright {
-    color: #d1d5db;
-    margin: 0 0 15px;
-    font-size: 15px;
+.content, main.container.content {
+  max-width: 1360px;
+  margin: 0 auto;
 }
 
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
 
-/* Liens en dessous */
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+.sidebar {
+  width: 250px;
+  flex: 0 0 250px;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sidebar);
+  padding: 26px 18px 20px;
+  position: sticky;
+  top: 28px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 120px);
+  overflow: hidden;
 }
 
-
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
+.sidebar-logo {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: #fff;
+  padding: 0 10px 20px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-
-.footer-links a:hover {
-    color: #d4af37;
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
 }
 
-/* ===== PAGE CONNEXION CLIENT ===== */
-
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 70vh;
+.sidebar nav a {
+  color: #b8c0d4;
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  transition: all 0.16s ease;
+  position: relative;
 }
 
+.sidebar nav a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
 
-.login-card {
+.sidebar nav a.active {
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.sidebar .logout {
+  margin-top: 16px;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  color: #e6a79c;
+  font-weight: 600;
+  font-size: 0.88rem;
+  border: 1px solid rgba(196, 87, 75, 0.35);
+  text-align: center;
+  transition: all 0.16s ease;
+}
+
+.sidebar .logout:hover {
+  background: rgba(196, 87, 75, 0.15);
+}
+
+/* Signature: woven-stripe motif at the base of the sidebar,
+   a quiet nod to the lamba textile pattern — the one ornamental flourish. */
+.sidebar::after {
+  content: "";
+  display: block;
+  height: 10px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: repeating-linear-gradient(
+    115deg,
+    var(--gold) 0px,
+    var(--gold) 3px,
+    transparent 3px,
+    transparent 7px
+  );
+  opacity: 0.55;
+}
+
+/* ==========================================================================
+   Main content
+   ========================================================================== */
+
+.operator-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.page-header { margin-bottom: 22px; }
+.page-header p { color: var(--muted); margin-top: 4px; }
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.card, .dashboard-card {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--line);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.card-header {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  padding: 16px 22px;
+  border: none !important;
+  letter-spacing: 0.01em;
+}
+
+.card.shadow-sm { box-shadow: var(--shadow-card) !important; border: 1px solid var(--line) !important; }
+
+.card-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 16px;
+  color: var(--navy);
+}
+
+.dashboard-card h4 {
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ==========================================================================
+   Stat cards (dashboard summary)
+   ========================================================================== */
+
+.stat-card {
+  background: var(--paper);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+  padding: 20px 22px;
+  height: 100%;
+}
+
+.stat-card h5 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.stat-card h2 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+  margin: 6px 0 0;
+  color: var(--navy);
+}
+
+.stat-card.gain { border-left: 4px solid var(--emerald); }
+.stat-card.commission { border-left: 4px solid var(--gold); }
+.stat-card.total-gain {
+  border-left: 4px solid var(--navy);
+  background: linear-gradient(135deg, #ffffff, #f3f0e8);
+}
+.stat-card.client { border-left: 4px solid var(--gold); background: #fff; }
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+.form-label { font-weight: 600; font-size: 0.86rem; color: var(--navy); margin-bottom: 6px; }
+
+.form-control, .prefix-input {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  background: #fbfaf7;
+  transition: all 0.15s ease;
+}
+
+.form-control:focus, .prefix-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 154, 72, 0.18);
+  background: #fff;
+  outline: none;
+}
+
+.prefix-form { display: flex; gap: 12px; margin-bottom: 24px; }
+.prefix-form .prefix-input { flex: 1; }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn-gold, button.btn-gold {
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 22px;
+  box-shadow: 0 6px 16px rgba(201, 154, 72, 0.3);
+  transition: all 0.16s ease;
+}
+
+.btn-gold:hover { filter: brightness(1.05); transform: translateY(-1px); }
+
+.btn-success {
+  background: var(--emerald) !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(29, 143, 107, 0.25);
+}
+
+.btn-success:hover { filter: brightness(1.08); }
+
+.btn-outline-danger, .delete-btn, .delete-button {
+  border: 1px solid var(--rose);
+  color: var(--rose);
+  background: transparent;
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.16s ease;
+  display: inline-block;
+}
+
+.btn-outline-danger:hover, .delete-btn:hover, .delete-button:hover {
+  background: var(--rose-bg);
+  color: var(--rose);
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.table-responsive, .table-container { border-radius: var(--radius-md); overflow: hidden; }
+
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--paper);
+}
+
+.modern-table thead th {
+  background: #f1efe7;
+  color: var(--navy);
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.modern-table tbody td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--ink);
+  vertical-align: middle;
+}
+
+.modern-table tbody tr:last-child td { border-bottom: none; }
+
+.modern-table tbody tr {
+  transition: background 0.14s ease;
+}
+
+.modern-table tbody tr:hover {
+  background: #faf8f2;
+}
+
+.modern-table td.money {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.modern-table .text-center, td.empty {
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+  padding: 28px !important;
+}
+
+/* Badges */
+.badge.bg-secondary, .prefix-badge {
+  background: #eef0f4 !important;
+  color: var(--navy) !important;
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 5px 11px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.badge.bg-warning {
+  background: #fbe9d0 !important;
+  color: #8a5a1a !important;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 5px 11px;
+}
+
+.badge.bg-info {
+  background: #dcecfb !important;
+  color: #1a5a8a !important;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 5px 11px;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .operator-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
     width: 100%;
-    max-width: 450px;
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    flex: none;
+    position: relative;
+    top: 0;
+    min-height: auto;
+  }
+
+  .sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebar .logout { margin-top: 12px; }
 }
 
-
-/* Header de la carte */
-
-.login-header {
-    background: #111827;
-    color: #d4af37;
-    text-align: center;
-    padding: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    border-bottom: 3px solid #d4af37;
+@media (max-width: 600px) {
+  .operator-layout { padding: 0 14px; margin: 16px auto; gap: 16px; }
+  .prefix-form { flex-direction: column; }
 }
 
+/* ==========================================================================
+   CLIENT-FACING PAGES
+   (dashboard, transfert multiple, login) — same token system as above
+   ========================================================================== */
 
-/* Corps */
+/* Alerts -------------------------------------------------------------- */
 
-.login-body {
-    padding: 30px;
+.alert {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 13px 18px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 18px;
 }
 
+.alert-danger { background: var(--rose-bg); color: #8a352a; }
+.alert-success { background: var(--emerald-bg); color: #146449; }
 
-/* Formulaire */
-
-.form-group label {
-    font-weight: 600;
-    margin-bottom: 8px;
-    display: block;
-    color: #111827;
-}
-
-
-.custom-input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #d1d5db;
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-
-
-.custom-input:focus {
-    outline: none;
-    border-color: #d4af37;
-    box-shadow: 0 0 5px rgba(212,175,55,0.4);
-}
-
-
-.form-group small {
-    color: #6b7280;
-}
-
-
-/* Bouton */
-
-.login-button {
-    width: 100%;
-    margin-top: 20px;
-    padding: 13px;
-    border-radius: 25px;
-    border: none;
-    background: #d4af37;
-    color: #111827;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-
-.login-button:hover {
-    background: #111827;
-    color: white;
-}
-
-
-/* Lien opérateur */
-
-.operator-link {
-    text-align: center;
-}
-
-
-.operator-link a {
-    text-decoration: none;
-    color: #6b7280;
-    transition: 0.3s;
-}
-
-
-.operator-link a:hover {
-    color: #d4af37;
-}
-
-/* =========================
-   CLIENT DASHBOARD
-========================= */
-
+/* Client dashboard shell ----------------------------------------------- */
 
 .client-dashboard {
-    padding: 20px 0;
+  max-width: 1180px;
+  margin: 28px auto;
+  padding: 0 24px 40px;
 }
-
-
-
-/* Barre client */
 
 .client-topbar {
-
-    background:#111827;
-    color:white;
-    padding:18px 25px;
-    border-radius:15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  font-weight: 500;
+  color: var(--muted);
 }
 
+.client-topbar strong { color: var(--navy); font-family: 'Sora', sans-serif; }
 
-.client-topbar strong {
-    color:#d4af37;
+.client-topbar .btn-outline-warning {
+  border: 1px solid var(--gold);
+  color: #8a5a1a;
+  background: #fbf3e4;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.86rem;
+  padding: 8px 18px;
+  transition: all 0.16s ease;
 }
 
-
+.client-topbar .btn-outline-warning:hover {
+  background: var(--gold);
+  color: #fff;
+}
 
 .logout-btn {
-
-    background:#d4af37;
-    color:#111827;
-    padding:10px 20px;
-    border-radius:25px;
-    text-decoration:none;
-    font-weight:bold;
-
+  border: 1px solid rgba(196, 87, 75, 0.35);
+  color: var(--rose);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.86rem;
+  padding: 8px 18px;
+  transition: all 0.16s ease;
 }
 
+.logout-btn:hover { background: var(--rose-bg); }
 
-
-/* Solde */
+/* Balance hero ----------------------------------------------------------- */
 
 .balance-card {
-
-    background:linear-gradient(135deg,#111827,#374151);
-    color:white;
-    padding:35px;
-    border-radius:20px;
-    text-align:center;
-    margin-bottom:35px;
-    box-shadow:0 10px 25px rgba(0,0,0,.2);
-
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-3) 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sidebar);
+  padding: 32px 34px;
+  margin-bottom: 26px;
+  position: relative;
+  overflow: hidden;
 }
 
+.balance-card::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  bottom: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 154, 72, 0.18), transparent 70%);
+}
+
+.balance-card h5 {
+  color: #b8c0d4;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 8px;
+}
 
 .balance-card h1 {
-
-    color:#d4af37;
-    font-size:45px;
-
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 2.6rem;
+  background: linear-gradient(135deg, #fff, var(--gold-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+  position: relative;
 }
 
+/* Action cards ------------------------------------------------------------ */
 
-
-
-
-/* Cartes actions */
-
+.action-section { margin: 0 0 26px; }
 
 .action-card {
-
-    background:white;
-    padding:25px;
-    border-radius:18px;
-    box-shadow:0 5px 20px rgba(0,0,0,.1);
-    height:100%;
-
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 22px;
+  height: 100%;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 
+.action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(16, 27, 45, 0.05), 0 18px 32px rgba(16, 27, 45, 0.09);
+}
 
 .action-title {
-
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:20px;
-    color:#111827;
-
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--navy);
+  margin-bottom: 14px;
 }
-
-
 
 .custom-input {
-
-    width:100%;
-    padding:12px;
-    margin-bottom:15px;
-    border-radius:10px;
-    border:1px solid #ddd;
-
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  background: #fbfaf7;
+  margin-bottom: 12px;
+  transition: all 0.15s ease;
 }
 
-
-
-
-button {
-
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:25px;
-    font-weight:bold;
-    cursor:pointer;
-
+.custom-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 154, 72, 0.18);
+  background: #fff;
+  outline: none;
 }
 
-
-
-.deposit-btn {
-
-    background:#16a34a;
-    color:white;
-
+.deposit-btn, .withdraw-btn, .transfer-btn {
+  width: 100%;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 11px 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  transition: all 0.16s ease;
 }
 
+.deposit-btn { background: var(--emerald); box-shadow: 0 6px 16px rgba(29, 143, 107, 0.25); }
+.deposit-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
 
-.withdraw-btn {
-
-    background:#dc2626;
-    color:white;
-
-}
-
+.withdraw-btn { background: var(--rose); box-shadow: 0 6px 16px rgba(196, 87, 75, 0.25); }
+.withdraw-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
 
 .transfer-btn {
-
-    background:#d4af37;
-    color:#111827;
-
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  color: var(--navy);
+  box-shadow: 0 6px 16px rgba(201, 154, 72, 0.3);
 }
+.transfer-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
 
-
-
-
-
-/* Historique */
-
+/* Transaction history ------------------------------------------------------ */
 
 .history-card {
-
-    margin-top:40px;
-    background:white;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 5px 20px rgba(0,0,0,.1);
-
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 24px;
 }
-
-
 
 .history-title {
-
-    background:#111827;
-    color:#d4af37;
-    padding:18px;
-    font-weight:bold;
-
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--navy);
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
 }
-
-
 
 .transaction-table {
-
-    width:100%;
-    border-collapse:collapse;
-
+  width: 100%;
+  border-collapse: collapse;
 }
 
-
-
-.transaction-table th {
-
-    background:#f3f4f6;
-    padding:15px;
-
+.transaction-table thead th {
+  background: #f1efe7;
+  color: var(--navy);
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
 }
 
-
-
-.transaction-table td {
-
-    padding:15px;
-    border-bottom:1px solid #eee;
-
+.transaction-table tbody td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.88rem;
+  color: var(--ink);
 }
 
+.transaction-table tbody tr:hover { background: #faf8f2; }
+.transaction-table tbody tr:last-child td { border-bottom: none; }
 
-
-.transaction-table tr:hover {
-
-    background:#faf7ed;
-
+.transaction-table .badge {
+  background: #eef0f4;
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.76rem;
+  padding: 5px 11px;
+  border-radius: 999px;
 }
 
+/* Login page ---------------------------------------------------------------- */
 
-
-.badge {
-
-    background:#d4af37;
-    color:#111827;
-    padding:6px 12px;
-    border-radius:15px;
-
+.login-container {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
-.operator-layout{
-    display:flex;
-    gap:25px;
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
 }
 
-
-/* SIDEBAR */
-
-.sidebar{
-
-    width:240px;
-    background:#111827;
-    min-height:700px;
-    padding:25px;
-    border-radius:15px;
-
+.login-header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-3) 100%);
+  color: #fff;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 26px 28px;
+  position: relative;
 }
 
-
-.sidebar-logo{
-
-    color:#d4af37;
-    font-size:22px;
-    font-weight:bold;
-    margin-bottom:30px;
-
+.login-header::after {
+  content: "";
+  display: block;
+  height: 6px;
+  width: 46px;
+  margin-top: 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
 }
 
+.login-body { padding: 30px 28px 32px; }
 
-.sidebar a{
+.login-body .form-group { margin-bottom: 20px; }
 
-    display:block;
-    color:white;
-    text-decoration:none;
-    padding:12px;
-    border-radius:10px;
-    margin-bottom:10px;
-
+.login-body label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--navy);
+  margin-bottom: 6px;
 }
 
-
-.sidebar a:hover{
-
-    background:#d4af37;
-    color:#111827;
-
+.login-body small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 6px;
 }
 
-
-.logout{
-
-    margin-top:80px;
-
+.login-button {
+  width: 100%;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px 0;
+  font-weight: 700;
+  font-size: 0.94rem;
+  color: var(--navy);
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  box-shadow: 0 6px 16px rgba(201, 154, 72, 0.3);
+  transition: all 0.16s ease;
 }
 
+.login-button:hover { filter: brightness(1.05); transform: translateY(-1px); }
 
+.login-body hr { border-color: var(--line); margin: 22px 0; }
 
+.operator-link { text-align: center; }
 
-
-/* CONTENU */
-
-.operator-content{
-
-    flex:1;
-
+.operator-link a {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 500;
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 2px;
+  transition: color 0.16s ease;
 }
 
+.operator-link a:hover { color: var(--gold); }
 
-.operator-header{
+/* Footer ---------------------------------------------------------------- */
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
+.footer {
+  background: var(--navy);
+  color: #b8c0d4;
+  padding: 22px 0;
+  margin-top: 40px;
 }
 
-
-
-.operator-header a{
-
-    background:#d4af37;
-    padding:10px 20px;
-    border-radius:25px;
-    color:#111827;
-    text-decoration:none;
-
+.footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
+.footer .copyright { margin: 0; font-size: 0.84rem; }
 
+.footer-links { display: flex; gap: 16px; }
 
-
-
-/* STATISTIQUES */
-
-.stat-card{
-
-    padding:30px;
-    border-radius:20px;
-    color:white;
-    margin:20px 0;
-
+.footer-links a {
+  color: #8892a8;
+  font-size: 0.82rem;
+  transition: color 0.16s ease;
 }
 
+.footer-links a:hover { color: var(--gold-2); }
 
-.gain{
+/* ==========================================================================
+   TRANSFERT MULTIPLE (standalone Bootstrap page)
+   Re-skins raw Bootstrap classes (.bg-primary, .btn-warning, .input-group…)
+   to the same navy / gold / cream system used everywhere else.
+   ========================================================================== */
 
-    background:#111827;
+body.bg-light { background: var(--cream) !important; }
 
+.py-5 > .row .card.shadow {
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-card) !important;
+  border: 1px solid var(--line) !important;
+  overflow: hidden;
 }
 
-
-.client{
-
-    background:#374151;
-
+.card-header.bg-primary {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-3) 100%) !important;
+  padding: 20px 26px;
+  border: none;
 }
 
-
-.stat-card h2{
-
-    color:#d4af37;
-
+.card-header.bg-primary h4 {
+  color: #fff;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
 }
 
+.card-body { padding: 28px 26px; }
 
-
-
-.dashboard-card{
-
-    background:white;
-    padding:25px;
-    border-radius:18px;
-    margin-bottom:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.1);
-
+.form-label.fw-bold {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600 !important;
+  color: var(--navy);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  display: block;
 }
 
-
-
-
-.btn-gold{
-
-    background:#d4af37;
-    border:none;
-    padding:10px 20px;
-
+/* "Ajouter un numéro" — gold pill instead of stock Bootstrap warning yellow */
+.btn.btn-warning.fw-bold {
+  background: linear-gradient(135deg, var(--gold-2), var(--gold)) !important;
+  border: none !important;
+  color: var(--navy) !important;
+  border-radius: 999px;
+  font-weight: 700 !important;
+  font-size: 0.84rem;
+  padding: 7px 18px;
+  box-shadow: 0 6px 14px rgba(201, 154, 72, 0.28);
+  transition: all 0.16s ease;
+  margin: 10px 0 14px;
 }
 
+.btn.btn-warning.fw-bold:hover { filter: brightness(1.05); transform: translateY(-1px); }
 
-
-
-.modern-table{
-
-    width:100%;
-    border-collapse:collapse;
-
+.numero-row {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--paper);
+  margin-bottom: 10px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-
-.modern-table th{
-
-    background:#111827;
-    color:white;
-    padding:15px;
-
+.numero-row:focus-within {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 154, 72, 0.18);
 }
 
-
-.modern-table td{
-
-    padding:15px;
-    border-bottom:1px solid #ddd;
-
+.phone-icon {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background: #f1efe7;
+  color: var(--navy);
+  font-size: 0.95rem;
+  flex: 0 0 auto;
 }
 
-
-.money{
-
-    color:#16a34a;
-    font-weight:bold;
-
+.numero-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  background: #fbfaf7;
+  color: var(--ink);
+  outline: none;
 }
 
+.numero-input:focus { background: #fff; }
 
-.delete-btn{
+.numero-input::placeholder { color: var(--muted); }
 
-    color:#dc2626;
-    text-decoration:none;
-
+.delete-number {
+  flex: 0 0 auto;
+  border: none;
+  background: transparent;
+  color: var(--rose);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: background 0.14s ease;
 }
 
-.prefix-form {
+.delete-number:hover { background: var(--rose-bg); }
 
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 35px;
+#liste-numeros { margin-bottom: 4px; }
 
+.form-text {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-top: 6px;
 }
 
-
-.prefix-input {
-
-    flex: 1;
-    padding: 14px 18px;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-
+.form-check-input {
+  border-color: var(--line);
 }
 
-
-.btn-gold {
-
-    background: #d4af37;
-    color: #111827;
-    border: none;
-    padding: 14px 30px;
-    border-radius: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: 0.3s;
-
+.form-check-input:checked {
+  background-color: var(--gold);
+  border-color: var(--gold);
 }
 
-
-.btn-gold:hover {
-
-    background: #111827;
-    color: white;
-
+.form-check-input:focus {
+  box-shadow: 0 0 0 3px rgba(201, 154, 72, 0.18);
+  border-color: var(--gold);
 }
 
-/* ===================================================
-   TRANSFERT MULTIPLE
-=================================================== */
-
-.card{
-
-    border:none;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,.12);
-
+.form-check-label {
+  color: var(--ink);
+  font-size: 0.9rem;
 }
 
-
-/* En-tête */
-
-.card-header{
-
-    background:#111827 !important;
-    color:#fff !important;
-    padding:20px 25px;
-    border:none;
-
+.btn.btn-success.btn-lg.fw-bold {
+  background: var(--emerald) !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem;
+  padding: 13px 0;
+  box-shadow: 0 8px 20px rgba(29, 143, 107, 0.28);
+  transition: all 0.16s ease;
 }
 
-.card-header h4{
+.btn.btn-success.btn-lg.fw-bold:hover { filter: brightness(1.07); transform: translateY(-1px); }
 
-    font-weight:700;
-    margin:0;
-
-}
-
-
-/* Corps */
-
-.card-body{
-
-    background:#ffffff;
-    padding:35px;
-
-}
-
-
-/* Labels */
-
-.form-label{
-
-    font-weight:600;
-    color:#374151;
-    margin-bottom:10px;
-
-}
-
-
-/* Champ numéro */
-
-.input-group{
-
-    margin-bottom:15px;
-
-}
-
-.input-group-text{
-
-    background:#111827;
-    color:#fff;
-    border:none;
-    width:55px;
-    justify-content:center;
-    font-size:20px;
-
-}
-
-
-.form-control{
-
-    border:1px solid #d1d5db;
-    padding:12px;
-    border-radius:0;
-    box-shadow:none;
-
-}
-
-
-.form-control:focus{
-
-    border-color:#d4af37;
-    box-shadow:0 0 8px rgba(212,175,55,.25);
-
-}
-
-
-/* Bouton supprimer */
-
-.btn-outline-danger{
-
-    border-width:2px;
-
-}
-
-.btn-outline-danger:hover{
-
-    background:#dc3545;
-    color:#fff;
-
-}
-
-
-/* Bouton Ajouter */
-
-.btn-warning{
-
-    background:#d4af37;
-    border:none;
-    color:#111827;
-    font-weight:700;
-    transition:.3s;
-
-}
-
-.btn-warning:hover{
-
-    background:#b8941f;
-    color:#fff;
-    transform:translateY(-2px);
-
-}
-
-
-/* Checkbox */
-
-.form-check-input:checked{
-
-    background:#d4af37;
-    border-color:#d4af37;
-
-}
-
-.form-check-label{
-
-    color:#374151;
-    font-weight:500;
-
-}
-
-
-/* Bouton Envoyer */
-
-.btn-success{
-
-    background:#111827;
-    border:none;
-    border-radius:10px;
-    padding:14px;
-    font-size:17px;
-    font-weight:700;
-    transition:.3s;
-
-}
-
-.btn-success:hover{
-
-    background:#d4af37;
-    color:#111827;
-    transform:translateY(-2px);
-
-}
-
-
-/* Texte d'information */
-
-.form-text{
-
-    color:#6b7280;
-    font-style:italic;
-
-}
-
-
-/* Responsive */
-
-@media (max-width:768px){
-
-    .card-body{
-
-        padding:20px;
-
-    }
-
-    .card-header{
-
-        flex-direction:column;
-        gap:15px;
-        align-items:flex-start !important;
-
-    }
-
-    .btn-warning{
-
-        width:100%;
-
-    }
-
-}
+.btn.btn-success.btn-lg.fw-bold i,
+.btn.btn-warning.fw-bold i { margin-right: 6px; }
